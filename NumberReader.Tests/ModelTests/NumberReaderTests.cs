@@ -34,5 +34,15 @@ namespace NumberReader.Tests
       string result = newNumber.ReadSingleDigit();
       Assert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+    public void IntegerToCharArray_ReturnsInputAsCharArray_CharArray()
+    {
+      Number newNumber = new Number("17");
+      int[] expected = {1, 7};
+      int[] result = newNumber.IntegerArray();
+      CollectionAssert.AreEqual(expected, result);
+
+    }
   }
 }
