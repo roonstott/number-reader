@@ -7,7 +7,7 @@ namespace NumberReader.Models
 
   public class Number
   {
-    public int UserNumber { get; set; }
+    public string UserNumber { get; set; }
 
     private Dictionary<int, string> SingleDigit = new Dictionary<int, string> () {{1, "one"}, {2, "two"}, {3, "three"}, {4, "four"}, {5, "five"}, {6, "six"}, {7, "seven"}, {8, "eight"}, {9, "nine"}};
 
@@ -23,17 +23,25 @@ namespace NumberReader.Models
 
     public Number(string stringUserNumber)
     {
-      UserNumber = Int32.Parse(stringUserNumber);
+      UserNumber = stringUserNumber;
     }
 
     public string ReadSingleDigit()
     {
-      return SingleDigit[UserNumber];
+      int number = int.Parse(UserNumber);
+      return SingleDigit[number];
     }
 
     public int[] IntegerArray() // ex. input: int 321 
     {
-      return new int[] {3, 2, 1};
+      char[] charArray = UserNumber.ToCharArray();
+      
+      List<int> charList = new List<int> { };
+      foreach (char character in charArray)
+      {
+        charList.Add(Int32.Parse(character.ToString()));
+      }
+      return charList.ToArray();
     }
   }
 }

@@ -20,8 +20,8 @@ namespace NumberReader.Tests
     {
       Number newNumber = new Number("7");
       string stringUserNumber = "7";
-      int expected = Int32.Parse(stringUserNumber);
-      int result = newNumber.UserNumber;
+      string expected = stringUserNumber;
+      string result = newNumber.UserNumber;
       Assert.AreEqual(expected, result);
     }
 
@@ -38,8 +38,8 @@ namespace NumberReader.Tests
     [TestMethod]
     public void IntegerToCharArray_ReturnsInputAsCharArray_CharArray()
     {
-      Number newNumber = new Number("17");
-      int[] expected = {1, 7};
+      Number newNumber = new Number("17897");
+      int[] expected = {1, 7, 8, 9, 7};
       int[] result = newNumber.IntegerArray();
       CollectionAssert.AreEqual(expected, result);
 
