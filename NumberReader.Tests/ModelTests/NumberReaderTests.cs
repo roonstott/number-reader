@@ -24,5 +24,15 @@ namespace NumberReader.Tests
       int result = newNumber.UserNumber;
       Assert.AreEqual(expected, result);
     }
+
+    [TestMethod]
+
+    public void ReadSingleDigit_ReturnsSingleDigitAsStringWord_String()
+    {
+      Number newNumber = new Number("7");
+      string expected = "seven";
+      string result = newNumber.ReadSingleDigit();
+      Assert.AreEqual(expected, result);
+    }
   }
 }
