@@ -44,5 +44,15 @@ namespace NumberReader.Tests
       CollectionAssert.AreEqual(expected, result);
 
     }
+
+    [TestMethod]
+
+    public void ChunkThrees_ReturnsDictionaryOfThreeDigitChunks_Dictionary()
+    {
+      Number newNumber = new Number("17323897");
+      Dictionary<int, int[]> expected = new Dictionary<int, int[]> () {{1, new [] {8, 9, 7}}, {2, new [] {3, 2, 3}}, {3, new [] {1, 7}}};
+      Dictionary<int, int[]> result = newNumber.ChunkThrees();
+      CollectionAssert.AreEqual(expected, result);
+    }
   }
 }

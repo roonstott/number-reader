@@ -43,5 +43,11 @@ namespace NumberReader.Models
       }
       return charList.ToArray();
     }
+
+    public Dictionary<int, int[]> ChunkThrees()
+    {
+      return new Dictionary<int, int[]> () { };
+    }
+
   }
 }
