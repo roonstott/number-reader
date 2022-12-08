@@ -18,8 +18,7 @@ namespace NumberReader.Models
 
     public string ReadSingleDigit()
     {
-      return "test";
+      return SingleDigit[UserNumber];
     }
-
   }
 }
