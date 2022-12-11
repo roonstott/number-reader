@@ -26,23 +26,12 @@ namespace NumberReader.Tests
     }
 
     [TestMethod]
-
-    public void ReadSingleDigit_ReturnsSingleDigitAsStringWord_String()
-    {
-      Number newNumber = new Number("7");
-      string expected = "seven";
-      string result = newNumber.ReadSingleDigit();
-      Assert.AreEqual(expected, result);
-    }
-
-    [TestMethod]
-    public void IntegerToCharArray_ReturnsInputAsCharArray_CharArray()
+    public void IntegerToIntList_ReturnsInputAsIntArray_IntArray()
     {
       Number newNumber = new Number("17897");
-      int[] expected = {1, 7, 8, 9, 7};
-      int[] result = newNumber.IntegerArray();
+      List<int> expected = new List<int> {1, 7, 8, 9, 7};
+      List<int> result = newNumber.IntegerList();
       CollectionAssert.AreEqual(expected, result);
-
     }
 
     [TestMethod]
@@ -50,9 +39,44 @@ namespace NumberReader.Tests
     public void ChunkThrees_ReturnsDictionaryOfThreeDigitChunks_Dictionary()
     {
       Number newNumber = new Number("17323897");
-      Dictionary<int, int[]> expected = new Dictionary<int, int[]> () {{1, new [] {8, 9, 7}}, {2, new [] {3, 2, 3}}, {3, new [] {1, 7}}};
-      Dictionary<int, int[]> result = newNumber.ChunkThrees();
-      CollectionAssert.AreEqual(expected, result);
+      Dictionary<int, List<int>> expected = new Dictionary<int, List<int>> () {{1, new List<int> {8,9,7}}, {2, new List<int> {3,2,3}}, {3, new List<int> {1,7}}};
+      Dictionary<int, List<int>> result = newNumber.ChunkThrees();
+      for (int index = 1; index<=3; index++)
+      {
+        CollectionAssert.AreEqual(expected[index], result[index]);
+      }
+    }
+
+    [TestMethod]
+
+    public void ReadTwo_ReadsTwoDigits_String()
+    {
+      Number newNumber = new Number("17323897");
+      Dictionary<int, List<int>> dictionary = newNumber.ChunkThrees();
+      List<int> list1 = dictionary[1];
+      List<int> list3 = dictionary[3];
+      string result1 = newNumber.ReadTwo(list1);
+      string expected1 = "ninety seven";
+      string result3 = newNumber.ReadTwo(list3);
+      string expected3 = "seventeen";
+      Assert.AreEqual(result1, expected1);
+      Assert.AreEqual(result3, expected3);
+    }
+
+    [TestMethod]
+
+    public void ReadAChunk_ReadsThreeDigits_String()
+    {
+      Number newNumber = new Number("17323897");
+      Dictionary<int, List<int>> dictionary = newNumber.ChunkThrees();
+      List<int> list1 = dictionary[1];
+      List<int> list3 = dictionary[3];
+      string result1 = newNumber.ReadAChunk(list1);
+      string expected1 = "eight hundred ninety seven";
+      string result3 = newNumber.ReadAChunk(list3);
+      string expected3 = "seventeen";
+      Assert.AreEqual(result1, expected1);
+      Assert.AreEqual(result3, expected3);
     }
   }
 }
